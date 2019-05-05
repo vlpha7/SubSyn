@@ -82,15 +82,13 @@
 					<!-- home content -->
 					<div class="col-md-10 col-md-offset-1">
 						<div class="home-content">
-              <h3 class="white-text">We Save Your Time Synchronizing Your Transcript</h3>
-              <div id="root">
-                  <form action="/upload" method="post" enctype="multipart/form-data">
-                    <input type="file"
-                        name="file"
-                        accept="autdio/* video/*" style="margin: auto"></input>
-                        <button class="main-btn">Submit</button>
-                  </form>
-                </div>
+                            <form action="/result" method="post">
+                                <input type="text"
+                                    name="userText" style="width: 600px; height: 300px;"></input>
+                        
+                                <input type="hidden" name="filename" value="<%= filename %>"/>
+                                <button type="submit">Submit Your Script (Optional)</button>
+                                </form>
 						</div>
 					</div>
 					<!-- /home content -->
@@ -123,4 +121,12 @@
 
 </body>
 
+<script>
+function download() {
+    var xmlHttp = new XMLHttpRequest();
+    var file = <%-JSON.stringify(filename)%>;
+    var url = window.location.protocol + "://" + window.location.hostname + ":" + window.location.port;
+    location.href = `/result?filename=${file}`;
+}
+</script>
 </html>
